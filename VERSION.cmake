@@ -65,6 +65,10 @@ if(MIRALL_VERSION_BUILD)
     set(MIRALL_VERSION_STRING "${MIRALL_VERSION_STRING} (build ${MIRALL_VERSION_BUILD})")
 endif()
 
+if (DEFINED EXTERNAL_VERSION)
+    set (MIRALL_VERSION_STRING "${EXTERNAL_VERSION}")
+endif (DEFINED EXTERNAL_VERSION)
+
 # ------------------------------------
 # Misc
 # ------------------------------------
