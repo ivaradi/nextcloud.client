@@ -14,7 +14,7 @@ import com.nextcloud.desktopclient
 RowLayout {
     id: root
 
-    required property color adaptiveTextColor
+    property color adaptiveTextColor
 
     property variant activityData: {{}}
 

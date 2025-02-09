@@ -42,6 +42,7 @@
 #include <QScopedValueRollback>
 #include <QMessageBox>
 
+#ifdef HAVE_KARCHIVE
 #include <KZip>
 #include <chrono>
 
@@ -172,6 +173,7 @@ bool createDebugArchive(const QString &filename)
 }
 
 }
+#endif // HAVE_KARCHIVE
 
 namespace OCC {
 
@@ -262,7 +264,11 @@ GeneralSettings::GeneralSettings(QWidget *parent)
     _ui->monoIconsCheckBox->setVisible(Theme::instance()->monoIconsAvailable());
 
     connect(_ui->ignoredFilesButton, &QAbstractButton::clicked, this, &GeneralSettings::slotIgnoreFilesEditor);
+#ifdef HAVE_KARCHIVE
     connect(_ui->debugArchiveButton, &QAbstractButton::clicked, this, &GeneralSettings::slotCreateDebugArchive);
+#else
+    _ui->debugArchiveButton->setEnabled(false);
+#endif
 
     // accountAdded means the wizard was finished and the wizard might change some options.
     connect(AccountManager::instance(), &AccountManager::accountAdded, this, &GeneralSettings::loadMiscSettings);
@@ -617,6 +623,7 @@ void GeneralSettings::slotIgnoreFilesEditor()
     }
 }
 
+#ifdef HAVE_KARCHIVE
 void GeneralSettings::slotCreateDebugArchive()
 {
     const auto filename = QFileDialog::getSaveFileName(
@@ -638,6 +645,7 @@ void GeneralSettings::slotCreateDebugArchive()
         );
     }
 }
+#endif
 
 void GeneralSettings::slotShowLegalNotice()
 {

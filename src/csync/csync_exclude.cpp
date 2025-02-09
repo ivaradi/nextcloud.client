@@ -21,6 +21,7 @@
 
 #include "common/utility.h"
 #include "common/filesystembase.h"
+#include "common/qtcompat.h"
 #include "../version.h"
 
 #include <QString>
@@ -297,7 +298,7 @@ void ExcludedFiles::loadExcludeFilePatterns(const QString &basePath, QFile &file
         if (line.isEmpty() || line.startsWith('#'))
             continue;
         const auto patternStr = QString::fromUtf8(line);
-        if (QStringView{patternStr}.trimmed() == QLatin1StringView("*")) {
+        if (QStringView{patternStr}.trimmed() == QLatin1StringOrView("*")) {
             continue;
         }
         csync_exclude_expand_escapes(line);
@@ -459,10 +460,10 @@ CSYNC_EXCLUDE_TYPE ExcludedFiles::traversalPatternMatch(const QString &path, Ite
         QRegularExpressionMatch m;
         if (filetype == ItemTypeDirectory
             && _bnameTraversalRegexDir.contains(basePath)) {
-            m = _bnameTraversalRegexDir[basePath].matchView(bnameStr);
+            m = matchRegularExpression(_bnameTraversalRegexDir[basePath], bnameStr);
         } else if (filetype == ItemTypeFile
             && _bnameTraversalRegexFile.contains(basePath)) {
-            m = _bnameTraversalRegexFile[basePath].matchView(bnameStr);
+            m = matchRegularExpression(_bnameTraversalRegexFile[basePath], bnameStr);
         } else {
             continue;
         }

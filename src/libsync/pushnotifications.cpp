@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include "common/qtcompat.h"
 #include "pushnotifications.h"
 #include "creds/abstractcredentials.h"
 #include "account.h"
@@ -21,7 +22,7 @@ PushNotifications::PushNotifications(Account *account, QObject *parent)
     , _account(account)
     , _webSocket(new QWebSocket(QString(), QWebSocketProtocol::VersionLatest, this))
 {
-    connect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::errorOccurred), this, &PushNotifications::onWebSocketError);
+    connect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(QWebSocketErrorOccurred), this, &PushNotifications::onWebSocketError);
     connect(_webSocket, &QWebSocket::sslErrors, this, &PushNotifications::onWebSocketSslErrors);
     connect(_webSocket, &QWebSocket::connected, this, &PushNotifications::onWebSocketConnected);
     connect(_webSocket, &QWebSocket::disconnected, this, &PushNotifications::onWebSocketDisconnected);
@@ -67,7 +68,7 @@ void PushNotifications::closeWebSocket()
         _reconnectTimer->stop();
     }
 
-    disconnect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::errorOccurred), this, &PushNotifications::onWebSocketError);
+    disconnect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(QWebSocketErrorOccurred), this, &PushNotifications::onWebSocketError);
     disconnect(_webSocket, &QWebSocket::sslErrors, this, &PushNotifications::onWebSocketSslErrors);
 
     _webSocket->close();
@@ -165,7 +166,7 @@ void PushNotifications::openWebSocket()
     const auto webSocketUrl = capabilities.pushNotificationsWebSocketUrl();
 
     qCInfo(lcPushNotifications) << "Open connection to websocket on" << webSocketUrl << "for account" << _account->url();
-    connect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::errorOccurred), this, &PushNotifications::onWebSocketError);
+    connect(_webSocket, QOverload<QAbstractSocket::SocketError>::of(QWebSocketErrorOccurred), this, &PushNotifications::onWebSocketError);
     connect(_webSocket, &QWebSocket::sslErrors, this, &PushNotifications::onWebSocketSslErrors);
     _webSocket->open(webSocketUrl);
 }

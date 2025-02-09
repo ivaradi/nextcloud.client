@@ -156,10 +156,16 @@ ColumnLayout {
 
             Binding {
                 when: userStatusSelectorModel.userStatusEmoji.length > 0
-                fieldButton {
-                    text: userStatusSelectorModel.userStatusEmoji
-                    contentItem.opacity: 1.0
-                }
+                target: fieldButton
+                property: text
+                value: userStatusSelectorModel.userStatusEmoji
+            }
+
+            Binding {
+                when: userStatusSelectorModel.userStatusEmoji.length > 0
+                target: fieldButton
+                property: contentItem.opacity
+                value: 1.0
             }
 
             Popup {
