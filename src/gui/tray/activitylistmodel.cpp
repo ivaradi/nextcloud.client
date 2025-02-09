@@ -17,6 +17,7 @@
 #include "caseclashfilenamedialog.h"
 #include "activitydata.h"
 #include "systray.h"
+#include "common/qtcompat.h"
 
 #include <QtCore>
 #include <QAbstractListModel>
