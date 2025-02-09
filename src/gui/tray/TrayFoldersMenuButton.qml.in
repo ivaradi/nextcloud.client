@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
-pragma NativeMethodBehavior: AcceptThisObject
+@QML_ACCEPTTHISOBJECT_PRAGMA@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
