@@ -14,7 +14,7 @@ import com.nextcloud.desktopclient
 RowLayout {
     id: root
 
-    required property color adaptiveTextColor
+    property color adaptiveTextColor
 
     property variant activityData: {{}}
 
@@ -178,9 +178,17 @@ RowLayout {
                     icon.height: Style.activityListButtonIconSize
 
                     ToolTip {
-                        popupType: Qt.platform.os === "windows" ? Popup.Item : Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                        id: fieldDetailsButtonToolTip
+
                         text: qsTr("Open file details")
                         visible: parent.hovered
+
+                        Binding {
+                            target: fieldDetailsButtonToolTip
+                            property: "popupType"
+                            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                            when: fieldDetailsButtonToolTip.hasOwnProperty("popupType")
+                        }
                     }
 
                     display: Button.IconOnly
@@ -201,9 +209,17 @@ RowLayout {
                     display: Button.IconOnly
 
                     ToolTip {
-                        popupType: Qt.platform.os === "windows" ? Popup.Item : Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                        id: dismissActionButtonToolTip
+
                         text: qsTr("Dismiss")
                         visible: parent.hovered
+
+                        Binding {
+                            target: dismissActionButtonToolTip
+                            property: "popupType"
+                            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                            when: dismissActionButtonToolTip.hasOwnProperty("popupType")
+                        }
                     }
 
                     visible: root.showDismissButton

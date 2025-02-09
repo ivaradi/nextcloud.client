@@ -5,6 +5,7 @@
  */
 
 #include "common/asserts.h"
+#include "common/qtcompat.h"
 #include "networkjobs.h"
 #include "account.h"
 #include "owncloudpropagator.h"
@@ -281,9 +282,7 @@ void AbstractNetworkJob::slotFinished()
                         << " origin=" << requestedUrl.host() << ":" << requestedUrl.port()
                         << " target=" << redirectUrl.host() << ":" << redirectUrl.port();
 
-                    auto headers = request.headers();
-                    headers.removeAll(QHttpHeaders::WellKnownHeader::Authorization);
-                    request.setHeaders(headers);
+                    removeAuthorizationHeaders(request);
                     request.setAttribute(AbstractCredentials::DontAddCredentialsAttribute, true);
                 }
 

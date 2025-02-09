@@ -17,6 +17,7 @@
 
 #include "common/asserts.h"
 #include "common/checksums.h"
+#include "common/qtcompat.h"
 
 #include <csync_exclude.h>
 #include "vio/csync_vio_local.h"

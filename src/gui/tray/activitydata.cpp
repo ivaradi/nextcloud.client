@@ -8,6 +8,7 @@
 
 #include "activitydata.h"
 #include "folderman.h"
+#include "common/qtcompat.h"
 
 using namespace Qt::StringLiterals;
 

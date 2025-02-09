@@ -18,6 +18,7 @@
 #include "activitydata.h"
 #include "systray.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 
 #include <QtCore>
 #include <QAbstractListModel>

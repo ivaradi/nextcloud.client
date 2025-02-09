@@ -196,9 +196,17 @@ Page {
                     }
 
                     ToolTip {
-                        popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                        id: overflowTagToolTip
+
                         visible: hoverHandler.hovered
                         text: tagRepeater.fileTagModel.overflowTagsString
+
+                        Binding {
+                            target: overflowTagToolTip
+                            property: "popupType"
+                            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                            when: overflowTagToolTip.hasOwnProperty("popupType")
+                        }
                     }
                 }
             }

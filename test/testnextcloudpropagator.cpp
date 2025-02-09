@@ -17,6 +17,8 @@
 #include "owncloudpropagator_p.h"
 #include "syncenginetestutils.h"
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 #ifdef HAVE_QHTTPSERVER
