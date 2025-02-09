@@ -7,6 +7,7 @@
 
 #include "account.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include <QJsonDocument>
 #include <QLoggingCategory>

@@ -10,6 +10,7 @@
 #include "owncloudpropagator.h"
 #include "clientsideencryption.h"
 #include "common/checksums.h"
+#include "common/qtcompat.h"
 
 #include "creds/abstractcredentials.h"
 #include "creds/httpcredentials.h"
@@ -815,7 +816,7 @@ bool PropfindJob::finished()
         // Parse DAV response
         auto domDocument = QDomDocument();
 
-        if (const auto res = domDocument.setContent(reply(), QDomDocument::ParseOption::UseNamespaceProcessing); !res) {
+        if (const auto res = QDomDocumentSetContentsUseNamespaceProcessing(domDocument, reply()); !res) {
             qCWarning(lcPropfindJob) << "XML parser error: " << res.errorMessage << res.errorLine << res.errorColumn;
             emit finishedWithError(reply());
 

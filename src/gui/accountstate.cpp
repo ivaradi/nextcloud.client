@@ -17,6 +17,7 @@
 #include "ocsuserstatusconnector.h"
 #include "pushnotifications.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include <QSettings>
 #include <QTimer>
