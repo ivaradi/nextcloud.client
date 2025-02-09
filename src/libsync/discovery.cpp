@@ -23,6 +23,7 @@
 #include <QThreadPool>
 #include <common/checksums.h>
 #include <common/constants.h>
+#include <common/qtcompat.h>
 #include "csync_exclude.h"
 #include "csync.h"
 

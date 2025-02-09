@@ -9,6 +9,7 @@
 #include "accountmanager.h"
 #include "clientproxy.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 #include "configfile.h"
 #include "filesystem.h"
 #include "folderman.h"
@@ -505,7 +506,7 @@ bool OwncloudSetupWizard::checkDowngradeAdvised(QNetworkReply *reply)
     }
 
     // Adhere to HSTS, even though we do not parse it properly
-    if (reply->hasRawHeader("Strict-Transport-Security"_L1)) {
+    if (reply->hasRawHeader("Strict-Transport-Security")) {
         return false;
     }
     return true;

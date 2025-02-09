@@ -24,6 +24,7 @@
 #include "common/preparedsqlquerymanager.h"
 
 #include "common/c_jhash.h"
+#include "common/qtcompat.h"
 
 // SQL expression to check whether path.startswith(prefix + '/')
 // Note: '/' + 1 == '0'

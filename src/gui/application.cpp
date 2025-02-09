@@ -31,6 +31,7 @@
 #include "version.h"
 #include "csync_exclude.h"
 #include "common/vfs.h"
+#include "common/qtcompat.h"
 
 #include "config.h"
 
@@ -1037,7 +1038,7 @@ void Application::setupTranslations()
     qCInfo(lcApplication) << "System UI languages are:" << QLocale::system().uiLanguages();
     auto choosenLanguage = enforcedLanguage();
     if (choosenLanguage.isEmpty()) {
-        for(const auto &localeToTest : QLocale::system().uiLanguages(QLocale::TagSeparator::Underscore)){
+        for(const auto &localeToTest : QLocale_uiLanguages()){
             const auto trFile = QString{QLatin1String{"client_"} + localeToTest};
             qCDebug(lcApplication()) << "trying to load" << localeToTest << "in" << trFile << "from" << trPath;
             if (translator->load(trFile, trPath)) {

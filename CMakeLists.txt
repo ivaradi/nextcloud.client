@@ -31,7 +31,7 @@ set(BIN_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 include(${CMAKE_SOURCE_DIR}/NEXTCLOUD.cmake)
 
 set(QT_VERSION_MAJOR "6")
-set(REQUIRED_QT_VERSION "6.8.0")
+set(REQUIRED_QT_VERSION "6.2.4")
 
 # CfAPI Shell Extensions
 set( CFAPI_SHELL_EXTENSIONS_LIB_NAME CfApiShellExtensions )
@@ -84,13 +84,11 @@ endif()
 
 set(APPLE_SUPPRESS_X11_WARNING ON)
 
-find_package(ECM 6.0.0 REQUIRED NO_MODULE)
+find_package(ECM 5.0.0 REQUIRED NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://invent.kde.org/frameworks/extra-cmake-modules")
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
-include(KDEInstallDirs)
-include(KDECMakeSettings)
 include(ECMMarkNonGuiExecutable)
 include(ECMSetupVersion)
 
@@ -152,7 +150,7 @@ if(APPLE AND BUILD_OWNCLOUD_OSX_BUNDLE)
     add_definitions(-DBUILD_OWNCLOUD_OSX_BUNDLE)
 endif()
 
-find_package(Qt${QT_MAJOR_VERSION} COMPONENTS Core)
+find_package(QT REQUIRED COMPONENTS Core NAMES Qt${QT_MAJOR_VERSION} )
 option(QUICK_COMPILER "Use QtQuick compiler to improve performance" OFF)
 
 # this option removes Http authentication, keychain, shibboleth etc and is intended for
