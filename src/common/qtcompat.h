@@ -57,6 +57,19 @@ inline QDebug& operator<<(QDebug& d, const std::basic_string<Char, Args...>& s)
 
 //-----------------------------------------------------------------------------
 
+#if QT_VERSION<QT_VERSION_CHECK(6, 6, 0)
+
+#include <chrono>
+
+template <typename Rep, typename Period>
+inline QDebug& operator<<(QDebug& d, const std::chrono::duration<Rep, Period> dur)
+{
+    return d << dur.count() << " " << Period::num << "/" << Period::den;
+}
+#endif
+
+//-----------------------------------------------------------------------------
+
 #if QT_VERSION>=QT_VERSION_CHECK(6, 5, 0)
 const auto QTimeZoneUTC = QTimeZone::UTC;
 #else
