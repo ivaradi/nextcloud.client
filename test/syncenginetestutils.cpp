@@ -416,8 +416,8 @@ FakePropfindReply::FakePropfindReply(FileInfo &remoteRootFileInfo, QNetworkAcces
         xml.writeTextElement(davUri, QStringLiteral("getlastmodified"), stringDate);
         xml.writeTextElement(davUri, QStringLiteral("getcontentlength"), QString::number(fileInfo.size));
         xml.writeTextElement(davUri, QStringLiteral("getetag"), QStringLiteral("\"%1\"").arg(QString::fromLatin1(fileInfo.etag)));
-        xml.writeTextElement(ocUri, QStringLiteral("quota-available-bytes"), std::to_string(fileInfo.folderQuota.bytesAvailable));
-        xml.writeTextElement(ocUri, QStringLiteral("quota-used-bytes"), std::to_string(fileInfo.folderQuota.bytesUsed));
+        xml.writeTextElement(ocUri, QStringLiteral("quota-available-bytes"), QString::number(fileInfo.folderQuota.bytesAvailable));
+        xml.writeTextElement(ocUri, QStringLiteral("quota-used-bytes"), QString::number(fileInfo.folderQuota.bytesUsed));
         xml.writeTextElement(ocUri, QStringLiteral("permissions"), !fileInfo.permissions.isNull() ? QString(fileInfo.permissions.toString()) : fileInfo.isShared ? QStringLiteral("GSRDNVCKW") : QStringLiteral("GRDNVCKW"));
         if (fileInfo.isShared) {
             if (fileInfo.downloadForbidden) {
