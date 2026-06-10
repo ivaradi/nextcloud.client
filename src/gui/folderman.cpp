@@ -16,6 +16,7 @@
 #include "filesystem.h"
 #include "lockwatcher.h"
 #include "common/asserts.h"
+#include "common/qtcompat.h"
 #include "gui/systray.h"
 #include "logger.h"
 #include <pushnotifications.h>

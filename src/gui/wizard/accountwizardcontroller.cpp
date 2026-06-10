@@ -5,6 +5,8 @@
 
 #include "wizard/accountwizardcontroller.h"
 
+#include "common/qtcompat.h"
+
 #include "account.h"
 #include "accountmanager.h"
 #include "clientproxy.h"
@@ -1993,7 +1995,7 @@ bool AccountWizardController::checkDowngradeAdvised(QNetworkReply *reply) const
         break;
     }
 
-    return !reply->hasRawHeader("Strict-Transport-Security"_L1);
+    return !QNetworkReplyHasRawHeader(reply, "Strict-Transport-Security");
 }
 
 } // namespace OCC

@@ -28,7 +28,9 @@
 #include "common/utility_mac_sandbox.h"
 #endif
 
+#ifdef HAVE_KARCHIVE
 #include <KZip>
+#endif
 
 #include <QDir>
 #include <QDirIterator>
@@ -122,6 +124,7 @@ QVector<ZipEntry> createDebugArchiveFileList()
     return list;
 }
 
+#ifdef HAVE_KARCHIVE
 bool createDebugArchive(const QString &filename)
 {
     const auto entries = createDebugArchiveFileList();
@@ -221,6 +224,8 @@ bool createDebugArchive(const QString &filename)
 
     return true;
 }
+
+#endif // HAVE_KARCHIVE
 
 } // namespace
 
@@ -373,6 +378,7 @@ void AdvancedSettings::slotCreateDebugArchive()
         return;
     }
 
+#ifdef HAVE_KARCHIVE
 #ifdef Q_OS_MACOS
     auto scopedAccess = Utility::MacSandboxSecurityScopedAccess::create(destination);
 
@@ -393,6 +399,13 @@ void AdvancedSettings::slotCreateDebugArchive()
             tr("Redact information deemed sensitive before sharing! Debug archive created at %1").arg(destination.toLocalFile())
         );
     }
+#else
+    QMessageBox::information(
+        this,
+        tr("Debug Archive Not Available"),
+        tr("Debug archive creation is not available on this platform.")
+    );
+#endif
 }
 
 void AdvancedSettings::slotRemotePollIntervalChanged(int seconds)

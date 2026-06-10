@@ -8,6 +8,7 @@
 #include "accountstate.h"
 #include "capabilities.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include "iconjob.h"
 
