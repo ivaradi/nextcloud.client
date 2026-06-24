@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include "common/qtcompat.h"
 #include "owncloudsetupwizard.h"
 
 #include "folderman.h"

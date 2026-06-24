@@ -8,6 +8,7 @@
 #include "common/syncjournaldb.h"
 #include "clientsideencryptionjobs.h"
 #include "foldermetadata.h"
+#include "common/qtcompat.h"
 #include <QLoggingCategory>
 
 using namespace Qt::StringLiterals;

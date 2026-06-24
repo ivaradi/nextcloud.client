@@ -52,9 +52,17 @@ TextField {
         }
 
         ToolTip {
-            popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+            id: sendReplyMessageButtonToolTip
+
             visible: sendReplyMessageButton.hovered
             text:  qsTr("Send reply to chat message")
+
+            Binding {
+                target: sendReplyMessageButtonToolTip
+                property: "popupType"
+                value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                when: sendReplyMessageButtonToolTip.hasOwnProperty("popupType")
+            }
         }
     }
 }
