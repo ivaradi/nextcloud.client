@@ -116,10 +116,18 @@ ColumnLayout {
                 }
 
                 ToolTip {
-                    popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                    id: emojiDelegateToolTip
+
                     text: modelData === undefined ? "" : modelData.shortname
                     visible: emojiDelegate.hovered
                     delay: Qt.styleHints.mousePressAndHoldInterval
+
+                    Binding {
+                        target: emojiDelegateToolTip
+                        property: "popupType"
+                        value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                        when: emojiDelegateToolTip.hasOwnProperty("popupType")
+                    }
                 }
 
                 onClicked: {

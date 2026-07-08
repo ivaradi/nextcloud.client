@@ -25,6 +25,7 @@
 
 #include "common/syncjournaldb.h"
 #include "common/asserts.h"
+#include "common/qtcompat.h"
 #include "clientsideencryption.h"
 #include "ocsuserstatusconnector.h"
 
@@ -1295,7 +1296,8 @@ void Account::listRemoteFolder(QPromise<OCC::PlaceholderCreateInfo> *promise, co
             return;
         }
 
-        promise->emplaceResult(itemFileName, itemFileName.toStdWString(), absoluteItemPathName, newEntry);
+        QPromiseEmplaceResult(promise, OCC::PlaceholderCreateInfo,
+                              itemFileName, itemFileName.toStdWString(), absoluteItemPathName, newEntry);
     });
 
     promise->start();

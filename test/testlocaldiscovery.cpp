@@ -13,6 +13,8 @@
 #include <syncengine.h>
 #include <localdiscoverytracker.h>
 
+#include "common/qtcompat.h"
+
 using namespace OCC;
 using namespace Qt::StringLiterals;
 

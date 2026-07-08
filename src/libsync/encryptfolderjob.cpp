@@ -5,6 +5,7 @@
 
 #include "encryptfolderjob.h"
 
+#include "common/qtcompat.h"
 #include "common/syncjournaldb.h"
 #include "clientsideencryptionjobs.h"
 #include "foldermetadata.h"

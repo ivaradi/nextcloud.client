@@ -17,9 +17,17 @@ MenuItem {
     property string toolTipText: root.text
 
     ToolTip {
-        popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+        id: rootToolTip
+
         visible: root.hovered && root.toolTipText !== ""
         text: root.toolTipText
+
+        Binding {
+            target: rootToolTip
+            property: "popupType"
+            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+            when: rootToolTip.hasOwnProperty("popupType")
+        }
     }
 
     contentItem: RowLayout {
