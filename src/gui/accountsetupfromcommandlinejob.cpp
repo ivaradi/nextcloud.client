@@ -5,6 +5,8 @@
 
 #include "accountsetupfromcommandlinejob.h"
 
+#include "common/qtcompat.h"
+
 #include "accountmanager.h"
 #include "accountstate.h"
 #include "creds/abstractcredentials.h"

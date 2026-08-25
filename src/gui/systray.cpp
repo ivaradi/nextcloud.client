@@ -47,6 +47,8 @@
 #define NOTIFICATIONS_IFACE "org.freedesktop.Notifications"
 #endif
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 namespace OCC {
@@ -453,11 +455,11 @@ void Systray::showSearchWindow(int userIndex)
         return;
     }
 
-    QQmlComponent searchWindowComponent(trayEngine(), "com.nextcloud.desktopclient.search"_L1, "SearchWindow"_L1);
+    auto *searchWindowComponent = QmlComponentFromUri(trayEngine(), QStringLiteral("com.nextcloud.desktopclient.search"), QStringLiteral("SearchWindow"));
 
-    if (searchWindowComponent.isError()) {
-        qCWarning(lcSystray) << searchWindowComponent.errorString();
-        qCWarning(lcSystray) << searchWindowComponent.errors();
+    if (searchWindowComponent->isError()) {
+        qCWarning(lcSystray) << searchWindowComponent->errorString();
+        qCWarning(lcSystray) << searchWindowComponent->errors();
         return;
     }
 
@@ -470,7 +472,7 @@ void Systray::showSearchWindow(int userIndex)
                     }},
         {"searchModel", QVariant::fromValue(searchModel)},
     };
-    const auto createdObject = searchWindowComponent.createWithInitialProperties(initialProperties);
+    const auto createdObject = searchWindowComponent->createWithInitialProperties(initialProperties);
     const auto window = qobject_cast<QQuickWindow *>(createdObject);
     if (!window) {
         qCWarning(lcSystray) << "Search window resulted in creation of object that was not a window!";
