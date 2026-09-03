@@ -1,0 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+import QtQuick
+import QtQuick.Controls
+
+TextField {
+    id: root
+
+    selectByMouse: true
+
+@QML_NC_CONTEXT_MENU_TEXT_FIELD@
+}

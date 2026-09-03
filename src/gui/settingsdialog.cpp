@@ -17,6 +17,7 @@
 #include "progressdispatcher.h"
 #include "owncloudgui.h"
 #include "accountmanager.h"
+#include "common/qtcompat.h"
 
 #include <QLabel>
 #include <QStandardItemModel>

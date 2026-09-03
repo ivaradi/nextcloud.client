@@ -18,6 +18,7 @@
 #include "propagatorjobs.h"
 #include "syncengine.h"
 #include "syncoptions.h"
+#include "common/qtcompat.h"
 
 #include <QFile>
 #include <QtTest>

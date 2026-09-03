@@ -10,6 +10,7 @@
 #include "folderman.h"
 #include "guiutility.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include <QDesktopServices>
 #include <QFileInfo>

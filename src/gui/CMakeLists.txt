@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 project(gui)
 find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS Widgets Svg Qml Quick QuickControls2 QuickWidgets Xml Network)
-find_package(KF6Archive REQUIRED)
+find_package(KF6Archive)
 find_package(KF6GuiAddons)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
@@ -580,12 +580,19 @@ target_link_libraries(nextcloudCore
   Qt::Quick
   Qt::QuickControls2
   Qt::QuickWidgets
-  KF6::Archive
   KDAB::kdsingleapplication
 
   nextcloudGuiSearch
   nextcloudGuiSearchplugin
   )
+
+if(KF6Archive_FOUND)
+  target_link_libraries(nextcloudCore
+    PUBLIC
+    KF6::Archive
+  )
+  add_definitions(-DHAVE_KARCHIVE)
+endif()
 
 if(KF6GuiAddons_FOUND)
   target_link_libraries(nextcloudCore
@@ -844,3 +851,76 @@ if(NOT BUILD_OWNCLOUD_OSX_BUNDLE AND NOT WIN32)
 endif()
 
 configure_file(configgui.h.in ${CMAKE_CURRENT_BINARY_DIR}/configgui.h)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.5")
+    set(QML_ACCEPTTHISOBJECT_PRAGMA "pragma NativeMethodBehavior: AcceptThisObject")
+else()
+    set(QML_ACCEPTTHISOBJECT_PRAGMA "")
+endif()
+configure_file(tray/TrayFoldersMenuButton.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/tray/TrayFoldersMenuButton.qml)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.6")
+    set(QML_UNIFORM_CELL_SIZES_TRUE "uniformCellSizes: true")
+else()
+    set(QML_UNIFORM_CELL_SIZES_TRUE "")
+endif()
+configure_file(wizard/qml/BrowserAuthFooter.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/wizard/qml/BrowserAuthFooter.qml)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.9")
+    set(QML_NC_CONTEXT_MENU_TEXT_FIELD  [=[
+    ContextMenu.menu: Menu {
+        // Match AutoSizingMenu: render the menu in its own window so that its
+        // items receive mouse events correctly inside frameless windows.
+        popupType: Popup.Window
+
+        MenuItem {
+            text: qsTr("Undo")
+            enabled: root.canUndo && !root.readOnly
+            onTriggered: root.undo()
+        }
+
+        MenuItem {
+            text: qsTr("Redo")
+            enabled: root.canRedo && !root.readOnly
+            onTriggered: root.redo()
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Cut")
+            enabled: root.selectedText.length > 0 && root.echoMode === TextInput.Normal && !root.readOnly
+            onTriggered: root.cut()
+        }
+
+        MenuItem {
+            text: qsTr("Copy")
+            enabled: root.selectedText.length > 0 && root.echoMode === TextInput.Normal
+            onTriggered: root.copy()
+        }
+
+        MenuItem {
+            text: qsTr("Paste")
+            enabled: root.canPaste && !root.readOnly
+            onTriggered: root.paste()
+        }
+
+        MenuItem {
+            text: qsTr("Delete")
+            enabled: root.selectedText.length > 0 && !root.readOnly
+            onTriggered: root.remove(root.selectionStart, root.selectionEnd)
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Select All")
+            enabled: root.length > 0
+            onTriggered: root.selectAll()
+        }
+    }
+]=])
+else()
+    set(QML_NC_CONTEXT_MENU_TEXT_FIELD "")
+endif()
+configure_file(common/NCContextMenuTextField.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/common/NCContextMenuTextField.qml)
