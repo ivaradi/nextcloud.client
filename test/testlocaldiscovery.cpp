@@ -18,6 +18,8 @@
 #include <QThreadPool>
 #include <QTemporaryDir>
 
+#include "common/qtcompat.h"
+
 using namespace OCC;
 using namespace Qt::StringLiterals;
 

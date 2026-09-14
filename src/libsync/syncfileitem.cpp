@@ -8,6 +8,7 @@
 #include "common/checksums.h"
 #include "common/syncjournalfilerecord.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 #include "helpers.h"
 #include "filesystem.h"
 

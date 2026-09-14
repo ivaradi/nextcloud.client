@@ -48,6 +48,8 @@
 
 #include "config.h"
 
+#include "common/qtcompat.h"
+
 #ifdef Q_OS_WIN32
 #include <windows.h>
 #else

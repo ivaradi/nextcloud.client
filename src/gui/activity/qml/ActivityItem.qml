@@ -12,6 +12,9 @@ import Style
 ItemDelegate {
     id: root
 
+    required property var model
+    required property int index
+
     property Flickable flickable
 
     property int iconSize: Style.trayListItemIconSize
@@ -33,9 +36,17 @@ ItemDelegate {
     Accessible.onPressAction: root.clicked()
 
     ToolTip {
-        popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+        id: rootToolTip
+
         visible: root.hovered && !activityContent.childHovered && model.displayLocation !== ""
         text: qsTr("In %1").arg(model.displayLocation)
+
+        Binding {
+            target: rootToolTip
+            property: "popupType"
+            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+            when: rootToolTip.hasOwnProperty("popupType")
+        }
     }
 
     // TODO: the current style does not support customization of this control
@@ -49,7 +60,6 @@ ItemDelegate {
 
             Layout.fillWidth: true
             Layout.minimumHeight: Style.minActivityHeight
-            Layout.preferredWidth: parent.width
 
             showDismissButton: model.isDismissable
 

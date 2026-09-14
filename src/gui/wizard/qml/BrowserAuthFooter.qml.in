@@ -13,7 +13,7 @@ RowLayout {
     required property QtObject controller
 
     spacing: Style.wizardFooterSpacing
-    uniformCellSizes: true
+    @QML_UNIFORM_CELL_SIZES_TRUE@
 
     WizardButton {
         enabled: !root.controller.busy

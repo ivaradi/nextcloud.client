@@ -15,7 +15,7 @@ import "../../tray"
 RowLayout {
     id: root
 
-    required property color adaptiveTextColor
+    property color adaptiveTextColor
 
     property variant activityData: {{}}
 
@@ -126,8 +126,6 @@ RowLayout {
 
         Layout.fillHeight: true
         Layout.fillWidth: true
-        Layout.maximumWidth: root.width - Style.standardSpacing - root.iconSize
-        implicitWidth: root.width - Style.standardSpacing - root.iconSize
 
         spacing: Style.smallSpacing
 
@@ -199,9 +197,17 @@ RowLayout {
                     display: Button.IconOnly
 
                     ToolTip {
-                        popupType: Qt.platform.os === "windows" ? Popup.Item : Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                        id: dismissActionButtonToolTip
+
                         text: qsTr("Dismiss")
                         visible: parent.hovered
+
+                        Binding {
+                            target: dismissActionButtonToolTip
+                            property: "popupType"
+                            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+                            when: dismissActionButtonToolTip.hasOwnProperty("popupType")
+                        }
                     }
 
                     visible: root.showDismissButton
