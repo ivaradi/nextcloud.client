@@ -14,6 +14,7 @@
 
 #include "common/syncjournaldb.h"
 #include "common/syncjournalfilerecord.h"
+#include "common/qtcompat.h"
 #include "logger.h"
 
 using namespace OCC;

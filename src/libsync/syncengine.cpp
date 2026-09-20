@@ -7,6 +7,7 @@
 #include "syncengine.h"
 #include "account.h"
 #include "common/filesystembase.h"
+#include "common/qtcompat.h"
 #include "owncloudpropagator.h"
 #include "common/syncjournaldb.h"
 #include "common/syncjournalfilerecord.h"

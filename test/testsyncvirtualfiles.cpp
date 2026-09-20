@@ -11,6 +11,7 @@
 #include <QtTest>
 #include "syncenginetestutils.h"
 #include "common/vfs.h"
+#include "common/qtcompat.h"
 #include "config.h"
 #include <syncengine.h>
 

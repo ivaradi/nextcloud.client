@@ -8,6 +8,7 @@
 #include "accountstate.h"
 #include "common/asserts.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 #include "folderman.h"
 #include "folderstatusdelegate.h"
 #include <account.h>

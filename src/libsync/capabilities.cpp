@@ -13,6 +13,8 @@
 #include <QVersionNumber>
 #include <QDebug>
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 namespace OCC {

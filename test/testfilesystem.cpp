@@ -12,6 +12,7 @@
 #include <QTemporaryFile>
 
 #include "common/filesystembase.h"
+#include "common/qtcompat.h"
 #include "logger.h"
 
 #include "libsync/filesystem.h"

@@ -12,6 +12,7 @@
 
 #include "accountstate.h"
 #include "common/vfs.h"
+#include "common/qtcompat.h"
 #include "folder.h"
 
 #include "account.h"

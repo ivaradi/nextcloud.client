@@ -5,6 +5,8 @@
 
 #include "governancenetworkjob.h"
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 namespace OCC

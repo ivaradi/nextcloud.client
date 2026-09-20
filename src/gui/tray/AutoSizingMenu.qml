@@ -7,7 +7,7 @@ import QtQuick
 import QtQuick.Controls
 
 Menu {
-    popupType: Popup.Window
+    id: autoSizingMenu
 
     width: {
         var result = 0;
@@ -18,5 +18,12 @@ Menu {
             padding = Math.max(item.padding, padding);
         }
         return result + padding * 2;
+    }
+
+    Binding {
+        target: autoSizingMenu
+        property: "popupType"
+        value: Popup.Window
+        when: autoSizingMenu.hasOwnProperty("popupType")
     }
 }

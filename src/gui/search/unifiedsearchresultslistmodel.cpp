@@ -10,6 +10,7 @@
 #include "guiutility.h"
 #include "folderman.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include <algorithm>
 
