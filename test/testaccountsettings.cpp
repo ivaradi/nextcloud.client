@@ -28,6 +28,8 @@
 
 #include "accountsettings.h"
 
+#include "common/qtcompat.h"
+
 using namespace OCC;
 
 class TestAccountSettings : public QObject

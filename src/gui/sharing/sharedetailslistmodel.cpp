@@ -5,6 +5,7 @@
 
 #include "sharedetailslistmodel.h"
 
+#include "common/qtcompat.h"
 #include "unifiedshare.h"
 
 using namespace Qt::StringLiterals;

@@ -2,8 +2,9 @@
 # SPDX-FileCopyrightText: 2014 ownCloud GmbH
 # SPDX-License-Identifier: GPL-2.0-or-later
 project(libsync)
-find_package(KF6Archive REQUIRED)
+find_package(KF6Archive)
 include(DefinePlatformDefaults)
+include(CheckCXXSourceCompiles)
 
 set(CMAKE_AUTOMOC TRUE)
 
@@ -170,6 +171,8 @@ set(libsync_SRCS
     chronoelapsedtimer.cpp
     hydrationjob.h
     hydrationjob.cpp
+    kfcompat.h
+    kfcompat.cpp
 )
 
 if (WIN32)
@@ -212,13 +215,14 @@ set(creds_HEADERS
     creds/httpcredentials.h
 )
 
-try_compile(HAS_CLOCK_CAST
-        SOURCE_FROM_CONTENT chrono_test.cpp "
+check_cxx_source_compiles("
 #include <chrono>
 int main() {
-    std::chrono::clock_cast<std::chrono::system_clock>;
-}"
-)
+    const auto systemTime = std::chrono::clock_cast<std::chrono::system_clock>(std::chrono::file_clock::now());
+    (void)systemTime;
+    return 0;
+}
+" HAS_CLOCK_CAST)
 message(STATUS "HAS_CLOCK_CAST: ${HAS_CLOCK_CAST}")
 
 if(HAS_CLOCK_CAST)
@@ -256,7 +260,7 @@ target_link_libraries(nextcloudsync
   Qt::Gui
   Qt::Svg
   Qt::Widgets
-  KF6::Archive
+
   Qt::Core5Compat
 )
 
@@ -271,6 +275,11 @@ if(TARGET OpenVFS::OpenVFS)
       PUBLIC
       OpenVFS::LibOpenVFS
   )
+endif()
+
+if (KF6Archive_FOUND)
+   target_link_libraries(nextcloudsync PUBLIC  KF6::Archive)
+   add_definitions(-DHAVE_KARCHIVE)
 endif()
 
 target_compile_features(nextcloudsync

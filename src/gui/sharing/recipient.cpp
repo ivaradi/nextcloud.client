@@ -5,6 +5,8 @@
 
 #include "recipient.h"
 
+#include "common/qtcompat.h"
+
 #include <algorithm>
 
 #include <QJsonArray>

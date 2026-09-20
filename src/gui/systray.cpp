@@ -46,6 +46,8 @@
 #define NOTIFICATIONS_IFACE "org.freedesktop.Notifications"
 #endif
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 namespace OCC {
@@ -132,6 +134,7 @@ void Systray::createTrayEngine()
 
     _trayEngine->addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     _trayEngine->addImportPath("qrc:/qml/theme");
+    _trayEngine->addImportPath(QStringLiteral("qrc:/qt/qml"));
     _trayEngine->addImageProvider("avatars", new ImageProvider);
     _trayEngine->addImageProvider(QLatin1String("svgimage-custom-color"), new OCC::Ui::SvgImageProvider);
     _trayEngine->addImageProvider(QLatin1String("tray-image-provider"), new TrayImageProvider);
@@ -418,11 +421,11 @@ void Systray::showSearchWindow(int userIndex)
         return;
     }
 
-    QQmlComponent searchWindowComponent(trayEngine(), "com.nextcloud.desktopclient.search"_L1, "SearchWindow"_L1);
+    auto *searchWindowComponent = QmlComponentFromUri(trayEngine(), QStringLiteral("com.nextcloud.desktopclient.search"), QStringLiteral("SearchWindow"));
 
-    if (searchWindowComponent.isError()) {
-        qCWarning(lcSystray) << searchWindowComponent.errorString();
-        qCWarning(lcSystray) << searchWindowComponent.errors();
+    if (searchWindowComponent->isError()) {
+        qCWarning(lcSystray) << searchWindowComponent->errorString();
+        qCWarning(lcSystray) << searchWindowComponent->errors();
         return;
     }
 
@@ -434,7 +437,7 @@ void Systray::showSearchWindow(int userIndex)
                     }},
         {"accountId", targetUserId},
     };
-    const auto createdObject = searchWindowComponent.createWithInitialProperties(initialProperties);
+    const auto createdObject = searchWindowComponent->createWithInitialProperties(initialProperties);
     const auto window = qobject_cast<QQuickWindow *>(createdObject);
     if (!window) {
         qCWarning(lcSystray) << "Search window resulted in creation of object that was not a window!";
@@ -884,14 +887,14 @@ void Systray::createUnifiedSharingDialog(const AccountPtr &account, const QStrin
         {"remotePath", remotePath},
     };
 
-    QQmlComponent fileDetailsDialog(trayEngine(), "com.nextcloud.desktopclient.sharing"_L1, "ShareDialog"_L1);
+    auto *fileDetailsDialog = QmlComponentFromUri(trayEngine(), "com.nextcloud.desktopclient.sharing"_L1, "ShareDialog"_L1);
 
-    if (fileDetailsDialog.isError()) {
-        qCWarning(lcSystray) << fileDetailsDialog.errorString();
+    if (fileDetailsDialog->isError()) {
+        qCWarning(lcSystray) << fileDetailsDialog->errorString();
         return;
     }
 
-    const auto createdDialog = fileDetailsDialog.createWithInitialProperties(initialProperties);
+    const auto createdDialog = fileDetailsDialog->createWithInitialProperties(initialProperties);
     const auto dialog = qobject_cast<QQuickWindow*>(createdDialog);
 
     if (!dialog) {

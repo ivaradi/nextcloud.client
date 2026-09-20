@@ -5,6 +5,7 @@
 
 #include "recipientmodel.h"
 
+#include "common/qtcompat.h"
 #include "recipient.h"
 #include "recipienticonutils.h"
 #include "unifiedshare.h"

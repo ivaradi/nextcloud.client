@@ -3,13 +3,14 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-pragma ComponentBehavior: Bound
+@QML_COMPONENT_BEHAVIOR_PRAGMA@
 
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
 import com.nextcloud.desktopclient
+import com.nextcloud.desktopclient.sharing
 import Style
 import "qrc:/qml/src/gui"
 import "qrc:/qml/src/gui/tray"

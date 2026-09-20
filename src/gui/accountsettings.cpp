@@ -10,6 +10,7 @@
 #include "common/syncjournalfilerecord.h"
 #include "qmessagebox.h"
 #include "ui_accountsettings.h"
+#include "common/qtcompat.h"
 
 #include "theme.h"
 #include "foldercreationdialog.h"

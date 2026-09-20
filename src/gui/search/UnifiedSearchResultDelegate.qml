@@ -9,6 +9,7 @@ import QtQuick.Layouts
 
 import Style
 import com.nextcloud.desktopclient
+import com.nextcloud.desktopclient.search
 import "qrc:/qml/src/gui/tray"
 
 Item {

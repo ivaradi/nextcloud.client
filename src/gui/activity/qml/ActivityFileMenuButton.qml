@@ -30,9 +30,17 @@ Button {
     icon.height: buttonIconSize
 
     ToolTip {
-        popupType: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+        id: buttonTooltip
+
         text: qsTr("Open file details")
         visible: parent.hovered
+
+        Binding {
+            target: buttonTooltip
+            property: "popupType"
+            value: Qt.platform.os === "windows" ? Popup.Item : Popup.Native
+            when: buttonTooltip.hasOwnProperty("popupType")
+        }
     }
 
     display: Button.IconOnly

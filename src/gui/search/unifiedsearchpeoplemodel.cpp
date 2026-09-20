@@ -5,6 +5,8 @@
 
 #include "unifiedsearchpeoplemodel.h"
 
+#include "common/qtcompat.h"
+
 #include "account.h"
 #include "accountstate.h"
 #include "common/utility.h"

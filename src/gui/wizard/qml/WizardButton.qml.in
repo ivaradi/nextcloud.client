@@ -5,7 +5,7 @@
 
 import QtQuick
 import QtQuick.Controls.Basic as BasicControls
-import QtQuick.Effects
+@QML_WIZARD_ICON_TINT_IMPORT@
 import QtQuick.Layouts
 import Style
 
@@ -56,15 +56,7 @@ BasicControls.Button {
                 Accessible.ignored: true
             }
 
-            MultiEffect {
-                objectName: "wizardButtonLeadingIconTint"
-                anchors.fill: leadingIconImage
-                visible: root.tintIcon
-                source: leadingIconImage
-                colorization: 1.0
-                colorizationColor: root.iconTintColor
-                Accessible.ignored: true
-            }
+@QML_WIZARD_BUTTON_ICON_TINT_EFFECT@
         }
 
         Text {

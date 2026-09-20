@@ -10,6 +10,7 @@
 #include "folderman.h"
 #include "creds/abstractcredentials.h"
 #include <theme.h>
+#include "common/qtcompat.h"
 
 #include <QTimer>
 #include <QJsonDocument>

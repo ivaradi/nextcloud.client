@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 project(gui)
 find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS Widgets Svg Qml Quick QuickControls2 QuickWidgets Xml Network)
-find_package(KF6Archive REQUIRED)
+find_package(KF6Archive)
 find_package(KF6GuiAddons)
 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
@@ -284,6 +284,12 @@ IF(BUILD_UPDATER)
         updater/updater.h
         updater/updater.cpp
     )
+endif()
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.4")
+    set(QML_COMPONENT_BEHAVIOR_PRAGMA "pragma ComponentBehavior: Bound")
+else()
+    set(QML_COMPONENT_BEHAVIOR_PRAGMA "")
 endif()
 
 add_subdirectory(search)
@@ -587,9 +593,16 @@ target_link_libraries(nextcloudCore
   Qt::Quick
   Qt::QuickControls2
   Qt::QuickWidgets
-  KF6::Archive
   KDAB::kdsingleapplication
   )
+
+if(KF6Archive_FOUND)
+  target_link_libraries(nextcloudCore
+    PUBLIC
+    KF6::Archive
+  )
+  add_definitions(-DHAVE_KARCHIVE)
+endif()
 
 if(KF6GuiAddons_FOUND)
   target_link_libraries(nextcloudCore
@@ -854,3 +867,120 @@ if(NOT BUILD_OWNCLOUD_OSX_BUNDLE AND NOT WIN32)
 endif()
 
 configure_file(configgui.h.in ${CMAKE_CURRENT_BINARY_DIR}/configgui.h)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.6")
+    set(QML_UNIFORM_CELL_SIZES_TRUE "uniformCellSizes: true")
+else()
+    set(QML_UNIFORM_CELL_SIZES_TRUE "")
+endif()
+configure_file(wizard/qml/BrowserAuthFooter.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/wizard/qml/BrowserAuthFooter.qml)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.9")
+    set(QML_NC_CONTEXT_MENU_TEXT_FIELD  [=[
+    ContextMenu.menu: Menu {
+        // Match AutoSizingMenu: render the menu in its own window so that its
+        // items receive mouse events correctly inside frameless windows.
+        popupType: Popup.Window
+
+        MenuItem {
+            text: qsTr("Undo")
+            enabled: root.canUndo && !root.readOnly
+            onTriggered: root.undo()
+        }
+
+        MenuItem {
+            text: qsTr("Redo")
+            enabled: root.canRedo && !root.readOnly
+            onTriggered: root.redo()
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Cut")
+            enabled: root.selectedText.length > 0 && root.echoMode === TextInput.Normal && !root.readOnly
+            onTriggered: root.cut()
+        }
+
+        MenuItem {
+            text: qsTr("Copy")
+            enabled: root.selectedText.length > 0 && root.echoMode === TextInput.Normal
+            onTriggered: root.copy()
+        }
+
+        MenuItem {
+            text: qsTr("Paste")
+            enabled: root.canPaste && !root.readOnly
+            onTriggered: root.paste()
+        }
+
+        MenuItem {
+            text: qsTr("Delete")
+            enabled: root.selectedText.length > 0 && !root.readOnly
+            onTriggered: root.remove(root.selectionStart, root.selectionEnd)
+        }
+
+        MenuSeparator {}
+
+        MenuItem {
+            text: qsTr("Select All")
+            enabled: root.length > 0
+            onTriggered: root.selectAll()
+        }
+    }
+]=])
+else()
+    set(QML_NC_CONTEXT_MENU_TEXT_FIELD "")
+endif()
+configure_file(common/NCContextMenuTextField.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/common/NCContextMenuTextField.qml)
+
+if ("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_GREATER_EQUAL "6.5")
+    set(QML_WIZARD_ICON_TINT_IMPORT "import QtQuick.Effects")
+    set(QML_WIZARD_BUTTON_ICON_TINT_EFFECT [=[
+            MultiEffect {
+                objectName: "wizardButtonLeadingIconTint"
+                anchors.fill: leadingIconImage
+                visible: root.tintIcon
+                source: leadingIconImage
+                colorization: 1.0
+                colorizationColor: root.iconTintColor
+                Accessible.ignored: true
+            }
+]=])
+    set(QML_WIZARD_MENU_ITEM_ICON_TINT_EFFECT [=[
+            MultiEffect {
+                objectName: "wizardMenuItemIconTint"
+                anchors.fill: menuIconImage
+                visible: root.tintIcon
+                source: menuIconImage
+                colorization: 1.0
+                colorizationColor: root.iconTintColor
+                Accessible.ignored: true
+            }
+]=])
+else()
+    set(QML_WIZARD_ICON_TINT_IMPORT "import Qt5Compat.GraphicalEffects")
+    set(QML_WIZARD_BUTTON_ICON_TINT_EFFECT [=[
+            ColorOverlay {
+                objectName: "wizardButtonLeadingIconTint"
+                anchors.fill: leadingIconImage
+                visible: root.tintIcon
+                source: leadingIconImage
+                color: root.iconTintColor
+                Accessible.ignored: true
+            }
+]=])
+    set(QML_WIZARD_MENU_ITEM_ICON_TINT_EFFECT [=[
+            ColorOverlay {
+                objectName: "wizardMenuItemIconTint"
+                anchors.fill: menuIconImage
+                visible: root.tintIcon
+                source: menuIconImage
+                color: root.iconTintColor
+                Accessible.ignored: true
+            }
+]=])
+endif()
+configure_file(wizard/qml/WizardButton.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/wizard/qml/WizardButton.qml)
+configure_file(wizard/qml/WizardMenuItem.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/wizard/qml/WizardMenuItem.qml)
+configure_file(integration/FileActionsWindow.qml.in ${CMAKE_CURRENT_SOURCE_DIR}/integration/FileActionsWindow.qml)

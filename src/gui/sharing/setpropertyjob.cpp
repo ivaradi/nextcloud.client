@@ -5,6 +5,8 @@
 
 #include "setpropertyjob.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonValue>
 
 using namespace Qt::StringLiterals;

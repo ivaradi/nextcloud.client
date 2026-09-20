@@ -5,11 +5,13 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include <QAbstractListModel>
 #include <QTimer>
 
 #include <QJsonArray>
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 #include "accountfwd.h"
 
@@ -21,6 +23,9 @@ class RecipientSearchModel : public QAbstractListModel
     Q_OBJECT
     QML_ELEMENT
 
+    // The moc-generated qt_metaTypeArray requires the full type definition of
+    // OCC::Account to instantiate the metatype for AccountPtr.
+    Q_MOC_INCLUDE("libsync/account.h")
     Q_PROPERTY(AccountPtr account READ account WRITE setAccount NOTIFY accountChanged)
     Q_PROPERTY(QString query READ query WRITE setQuery NOTIFY queryChanged)
     Q_PROPERTY(QString shareId READ shareId WRITE setShareId NOTIFY shareIdChanged)

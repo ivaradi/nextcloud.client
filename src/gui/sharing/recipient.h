@@ -5,12 +5,14 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include <QHash>
 #include <QJsonObject>
 #include <QList>
 #include <QObject>
 
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 #include <memory>
 #include <vector>
