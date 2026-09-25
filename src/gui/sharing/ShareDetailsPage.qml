@@ -8,6 +8,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 import com.nextcloud.desktopclient
+import com.nextcloud.desktopclient.sharing
 import Style
 import "qrc:/qml/src/gui"
 import "qrc:/qml/src/gui/tray"

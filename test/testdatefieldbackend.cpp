@@ -10,6 +10,7 @@
 #include <QTest>
 #include <QSignalSpy>
 #include <QStandardPaths>
+#include <QTimeZone>
 
 using namespace OCC;
 

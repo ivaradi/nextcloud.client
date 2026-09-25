@@ -28,6 +28,8 @@
 
 #include <cstring>
 
+#include "common/qtcompat.h"
+
 // SQL expression to check whether path.startswith(prefix + '/')
 // Note: '/' + 1 == '0'
 #define IS_PREFIX_PATH_OF(prefix, path) \

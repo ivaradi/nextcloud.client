@@ -5,9 +5,10 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
 #include "sharedetailslistmodel.h"
 
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 namespace OCC::Gui::Sharing {
 

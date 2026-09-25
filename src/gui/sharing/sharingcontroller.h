@@ -5,12 +5,14 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include <QHash>
 #include <QJsonDocument>
 #include <QList>
 #include <QObject>
 #include <QSet>
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 #include <memory>
 #include <vector>
@@ -27,6 +29,9 @@ class SharingController : public QObject
     Q_OBJECT
     QML_ELEMENT
 
+    // The moc-generated qt_metaTypeArray requires the full type definition of
+    // OCC::Account to instantiate the metatype for AccountPtr.
+    Q_MOC_INCLUDE("libsync/account.h")
     Q_PROPERTY(AccountPtr account READ account WRITE setAccount NOTIFY accountChanged)
     Q_PROPERTY(QList<Share *> shares READ shares NOTIFY sharesChanged)
     Q_PROPERTY(bool creatingShare READ creatingShare NOTIFY creatingShareChanged)

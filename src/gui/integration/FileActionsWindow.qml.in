@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-pragma ComponentBehavior: Bound
+@QML_COMPONENT_BEHAVIOR_PRAGMA@
 
 import QtQuick
 import QtQuick.Window
@@ -150,7 +150,6 @@ ApplicationWindow {
                         color: palette.windowText
                         width: Style.minimumActivityItemHeight
                         height: Style.minimumActivityItemHeight
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
                     }
 
                     background: Rectangle {

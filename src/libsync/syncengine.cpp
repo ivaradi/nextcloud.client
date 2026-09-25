@@ -18,6 +18,7 @@
 #include "deletejob.h"
 #include "propagatedownload.h"
 #include "common/asserts.h"
+#include "common/qtcompat.h"
 #include "configfile.h"
 #include "discovery.h"
 #include "common/vfs.h"

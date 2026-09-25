@@ -18,6 +18,7 @@
 #include "propagateremotemove.h"
 #include "deletejob.h"
 #include "common/asserts.h"
+#include "common/qtcompat.h"
 
 #include <QNetworkAccessManager>
 #include <QFileInfo>

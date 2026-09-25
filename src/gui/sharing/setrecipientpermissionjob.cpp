@@ -5,6 +5,8 @@
 
 #include "setrecipientpermissionjob.h"
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 namespace OCC::Gui::Sharing

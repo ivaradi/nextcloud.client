@@ -8,6 +8,8 @@
 #include "networkjobs.h"
 #include "ocsassistantconnector.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonObject>
 #include <QUrlQuery>
 

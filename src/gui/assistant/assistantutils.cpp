@@ -5,6 +5,8 @@
 
 #include "assistantutils.h"
 
+#include "common/qtcompat.h"
+
 #include <QDateTime>
 #include <QJsonObject>
 #include <QLocale>

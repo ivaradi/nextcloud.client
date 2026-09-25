@@ -12,6 +12,7 @@
 #include "creds/credentialsfactory.h"
 #include "creds/abstractcredentials.h"
 #include "creds/keychainchunk.h"
+#include "common/qtcompat.h"
 #include "libsync/clientsideencryption.h"
 #include "libsync/configfile.h"
 #include "libsync/cookiejar.h"
@@ -859,12 +860,12 @@ void AccountManager::updateServerManagedSettings()
         }
         const auto accountSettings = account->account()->serverManagedSettings();
         merged.schemaVersion = qMax(merged.schemaVersion, accountSettings.schemaVersion);
-        for (const auto &[key, value] : accountSettings.enforced.asKeyValueRange()) {
+        for (const auto &[key, value] : asKeyValueRange(accountSettings.enforced)) {
             if (!merged.enforced.contains(key)) {
                 merged.enforced.insert(key, value);
             }
         }
-        for (const auto &[key, value] : accountSettings.defaults.asKeyValueRange()) {
+        for (const auto &[key, value] : asKeyValueRange(accountSettings.defaults)) {
             if (!merged.defaults.contains(key)) {
                 merged.defaults.insert(key, value);
             }
