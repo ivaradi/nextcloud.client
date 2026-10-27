@@ -5,6 +5,7 @@
 
 #include "permissionmodel.h"
 
+#include "common/qtcompat.h"
 #include "permission.h"
 #include "recipient.h"
 #include "unifiedshare.h"

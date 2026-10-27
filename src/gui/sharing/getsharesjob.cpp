@@ -5,6 +5,8 @@
 
 #include "getsharesjob.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonDocument>
 
 using namespace Qt::StringLiterals;

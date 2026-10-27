@@ -16,6 +16,7 @@
 
 #include "QtTest/qtestcase.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 #include "folderman.h"
 #include "account.h"
 #include "accountstate.h"

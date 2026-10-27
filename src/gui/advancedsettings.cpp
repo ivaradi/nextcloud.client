@@ -11,6 +11,7 @@
 #include "capabilities.h"
 #include "common/utility.h"
 #include "common/vfs.h"
+#include "common/qtcompat.h"
 #include "configfile.h"
 #include "folderman.h"
 #include "folder.h"
@@ -29,7 +30,9 @@
 #include "macOS/macsandboxfilepicker.h"
 #endif
 
+#ifdef HAVE_KARCHIVE
 #include <KZip>
+#endif
 
 #include <QDir>
 #include <QDirIterator>
@@ -126,6 +129,7 @@ QVector<ZipEntry> createDebugArchiveFileList()
     return list;
 }
 
+#ifdef HAVE_KARCHIVE
 bool createDebugArchive(const QString &filename)
 {
     auto entries = createDebugArchiveFileList();
@@ -200,6 +204,8 @@ bool createDebugArchive(const QString &filename)
 
     return true;
 }
+
+#endif // HAVE_KARCHIVE
 
 } // namespace
 
@@ -431,6 +437,7 @@ void AdvancedSettings::pickDebugArchiveLocation(std::function<void(const QString
 
 void AdvancedSettings::slotCreateDebugArchive()
 {
+#ifdef HAVE_KARCHIVE
     const QPointer<AdvancedSettings> settings(this);
     _debugArchiveLocationPicker([settings](const QString &destination) {
         if (!settings || destination.isEmpty() || !createDebugArchive(destination)) {
@@ -441,6 +448,13 @@ void AdvancedSettings::slotCreateDebugArchive()
                                  tr("Debug Archive Created"),
                                  tr("Redact information deemed sensitive before sharing! Debug archive created at %1").arg(destination));
     });
+#else
+    QMessageBox::information(
+        this,
+        tr("Debug Archive Not Available"),
+        tr("Debug archive creation is not available on this platform.")
+    );
+#endif
 }
 
 void AdvancedSettings::slotRemotePollIntervalChanged(int seconds)

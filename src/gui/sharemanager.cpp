@@ -11,6 +11,7 @@
 #include "accountstate.h"
 #include "clientsideencryption.h"
 #include "updatee2eefolderusersmetadatajob.h"
+#include "common/qtcompat.h"
 
 #include <QUrl>
 #include <QJsonDocument>

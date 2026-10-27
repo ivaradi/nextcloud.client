@@ -6,6 +6,8 @@
 
 #include "permission.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonObject>
 
 using namespace Qt::StringLiterals;

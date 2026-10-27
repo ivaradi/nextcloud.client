@@ -30,6 +30,7 @@
 #include <QProcess>
 #include <QScopeGuard>
 #endif
+#include "common/qtcompat.h"
 
 using namespace OCC;
 using namespace Qt::StringLiterals;

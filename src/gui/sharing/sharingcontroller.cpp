@@ -5,6 +5,8 @@
 
 #include "sharingcontroller.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
