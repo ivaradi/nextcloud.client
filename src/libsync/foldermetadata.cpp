@@ -4,6 +4,7 @@
  */
 
 #include "account.h"
+#include "common/qtcompat.h"
 #include "encryptedfoldermetadatahandler.h"
 #include "foldermetadata.h"
 #include "clientsideencryption.h"

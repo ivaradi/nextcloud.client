@@ -19,6 +19,7 @@
 #include "systray.h"
 #include "talkreply.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 
 #include <QAbstractListModel>
 #include <QDesktopServices>

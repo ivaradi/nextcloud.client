@@ -7,6 +7,7 @@
 #include "logger.h"
 
 #include "config.h"
+#include "common/qtcompat.h"
 
 #include <QDir>
 #include <QRegularExpression>

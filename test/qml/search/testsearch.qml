@@ -696,8 +696,13 @@ Item {
             const iconTint = findChild(wizardHoverButton, "wizardButtonLeadingIconTint")
             verify(iconTint !== null)
             compare(iconTint.visible, true)
-            compare(iconTint.colorization, 1.0)
-            compare(iconTint.colorizationColor.toString(), Style.wizardPrimaryText.toString())
+            const expectedColor = Style.wizardPrimaryText.toString()
+            if (iconTint.hasOwnProperty("colorization")) {
+                compare(iconTint.colorization, 1.0)
+                compare(iconTint.colorizationColor.toString(), expectedColor)
+            } else {
+                compare(iconTint.color.toString(), expectedColor)
+            }
         }
 
         function test_trailingIconCannotOverlapLongText() {
@@ -737,8 +742,13 @@ Item {
             const iconTint = findChild(wizardMenuHoverItem, "wizardMenuItemIconTint")
             verify(iconTint !== null)
             compare(iconTint.visible, true)
-            compare(iconTint.colorization, 1.0)
-            compare(iconTint.colorizationColor.toString(), Style.wizardPrimaryText.toString())
+            const expectedColor = Style.wizardPrimaryText.toString()
+            if (iconTint.hasOwnProperty("colorization")) {
+                compare(iconTint.colorization, 1.0)
+                compare(iconTint.colorizationColor.toString(), expectedColor)
+            } else {
+                compare(iconTint.color.toString(), expectedColor)
+            }
         }
     }
 

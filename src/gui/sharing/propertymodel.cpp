@@ -5,6 +5,7 @@
 
 #include "propertymodel.h"
 
+#include "common/qtcompat.h"
 #include "unifiedshare.h"
 #include "property.h"
 

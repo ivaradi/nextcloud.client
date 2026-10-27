@@ -8,6 +8,7 @@
 #include "accountstate.h"
 #include "syncenginetestutils.h"
 #include "testhelper.h"
+#include "common/qtcompat.h"
 
 #include <QTest>
 #include <QHash>

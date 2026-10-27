@@ -25,6 +25,7 @@
 #include "activity/activitylistmodel.h"
 #include "userstatusconnector.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 
 #ifdef BUILD_FILE_PROVIDER_MODULE
 #include "gui/macOS/fileprovider.h"
