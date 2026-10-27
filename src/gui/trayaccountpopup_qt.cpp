@@ -5,6 +5,8 @@
 
 #include "systray.h"
 
+#include "common/qtcompat.h"
+
 #include "accountmanager.h"
 #include "accountstate.h"
 #include "iconjob.h"

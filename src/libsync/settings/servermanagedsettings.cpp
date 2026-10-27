@@ -5,6 +5,7 @@
 
 #include "settings/servermanagedsettings.h"
 
+#include "common/qtcompat.h"
 #include "common/vfs.h"
 #include "settings/managedsettingsschema.h"
 #include "settings/settingpriorities.h"
@@ -69,12 +70,12 @@ ServerManagedSettings sanitizeServerManagedSettings(const ServerManagedSettings 
     serverSettings.schemaVersion = raw.schemaVersion;
 
     const auto &validKeys = validServerKeys();
-    for (const auto &[key, value] : raw.defaults.asKeyValueRange()) {
+    for (const auto &[key, value] : asKeyValueRange(raw.defaults)) {
         if (validKeys.contains(key) && isServerKeyValueValid(key, value)) {
             serverSettings.defaults.insert(key, value);
         }
     }
-    for (const auto &[key, value] : raw.enforced.asKeyValueRange()) {
+    for (const auto &[key, value] : asKeyValueRange(raw.enforced)) {
         const auto policy = validKeys.constFind(key);
         if (policy != validKeys.cend() && policy->serverEnforceable && isServerKeyValueValid(key, value)) {
             serverSettings.enforced.insert(key, value);

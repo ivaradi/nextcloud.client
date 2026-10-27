@@ -7,6 +7,7 @@
 
 #include "accountstate.h"
 #include "networkjobs.h"
+#include "common/qtcompat.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>

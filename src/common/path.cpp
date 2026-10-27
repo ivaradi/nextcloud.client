@@ -4,6 +4,7 @@
 #include "path.h"
 
 #include "common/filesystembase.h"
+#include "common/qtcompat.h"
 
 OCC::FileSystem::Path::Path(QStringView path)
     : _path(toFilesystemPath(path.toString()))

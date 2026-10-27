@@ -5,9 +5,11 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include <QAbstractListModel>
 #include <QMetaObject>
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 namespace OCC::Gui::Sharing
 {
