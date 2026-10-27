@@ -5,7 +5,7 @@
 
 import QtQuick
 import QtQuick.Controls.Basic as BasicControls
-import QtQuick.Effects
+@QML_WIZARD_ICON_TINT_IMPORT@
 import QtQuick.Layouts
 
 import Style
@@ -42,15 +42,7 @@ BasicControls.MenuItem {
                 Accessible.ignored: true
             }
 
-            MultiEffect {
-                objectName: "wizardMenuItemIconTint"
-                anchors.fill: menuIconImage
-                visible: root.tintIcon
-                source: menuIconImage
-                colorization: 1.0
-                colorizationColor: root.iconTintColor
-                Accessible.ignored: true
-            }
+@QML_WIZARD_MENU_ITEM_ICON_TINT_EFFECT@
 
             Accessible.ignored: true
         }

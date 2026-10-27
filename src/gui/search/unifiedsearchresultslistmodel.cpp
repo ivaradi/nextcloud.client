@@ -11,6 +11,7 @@
 #include "guiutility.h"
 #include "networkjobs.h"
 #include "tray/usermodel.h"
+#include "common/qtcompat.h"
 
 #include <QDesktopServices>
 #include <QFileInfo>

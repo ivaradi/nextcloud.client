@@ -10,6 +10,7 @@
 #include "common/syncjournaldb.h"
 #include "clientsideencryptionjobs.h"
 #include "clientsideencryption.h"
+#include "common/qtcompat.h"
 
 #include <QLoggingCategory>
 #include <QNetworkReply>

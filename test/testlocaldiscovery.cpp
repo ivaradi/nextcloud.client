@@ -24,6 +24,8 @@
 #include <functional>
 #include <system_error>
 
+#include "common/qtcompat.h"
+
 using namespace OCC;
 using namespace Qt::StringLiterals;
 

@@ -12,6 +12,7 @@
 #include <QTemporaryDir>
 #include <QtTest>
 
+#include "common/qtcompat.h"
 #include "account.h"
 #include "accountstate.h"
 #include "logger.h"

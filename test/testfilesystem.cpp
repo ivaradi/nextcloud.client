@@ -14,6 +14,7 @@
 #include <functional>
 
 #include "common/filesystembase.h"
+#include "common/qtcompat.h"
 #include "logger.h"
 #include "syncenginetestutils.h"
 

@@ -18,6 +18,7 @@
 #include "cookiejar.h"
 #include "accessmanager.h"
 #include "common/utility.h"
+#include "common/qtcompat.h"
 #include "httplogger.h"
 
 using namespace Qt::StringLiterals;
@@ -119,7 +120,7 @@ QNetworkReply *AccessManager::createRequest(QNetworkAccessManager::Operation op,
 
     const auto reply = QNetworkAccessManager::createRequest(op, newRequest, outgoingData);
     HttpLogger::logRequest(reply, op, outgoingData);
-    QObject::connect(reply, &QNetworkReply::requestSent, reply, [reply] {
+    QObject::connect(reply, QNetworkReplyRequestSent, reply, [reply] {
         qCInfo(lcAccessManager()) << "Request has been sent"
                                   << reply->url().toString()
                                   << reply->request().rawHeader("X-Request-ID"_ba)

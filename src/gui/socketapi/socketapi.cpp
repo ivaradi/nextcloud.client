@@ -17,6 +17,7 @@
 #include "encryptfolderjob.h"
 #include "theme.h"
 #include "common/syncjournalfilerecord.h"
+#include "common/qtcompat.h"
 #include "syncengine.h"
 #include "syncfileitem.h"
 #include "filesystem.h"
