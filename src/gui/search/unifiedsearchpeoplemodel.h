@@ -5,12 +5,14 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include "accountstate.h"
 
 #include <QAbstractListModel>
 #include <QPointer>
 #include <QTimer>
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 namespace OCC {
 

@@ -5,6 +5,8 @@
 
 #include "settings/managedsettingsschema.h"
 
+#include "common/qtcompat.h"
+
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>

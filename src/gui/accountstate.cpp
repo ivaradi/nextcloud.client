@@ -18,6 +18,7 @@
 #include "pushnotifications.h"
 #include "networkjobs.h"
 #include "settings/migration.h"
+#include "common/qtcompat.h"
 
 #include <QSettings>
 #include <QTimer>

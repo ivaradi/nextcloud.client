@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "common/qtcompat.h"
+
 #include <QAbstractListModel>
 #include <QDateTime>
 #include <QJsonArray>
@@ -15,14 +17,14 @@
 #include <QtCore>
 #include <QTimer>
 #include <QUrlQuery>
-#include <QtQmlIntegration>
+#include QmlIntegrationHeader
 
 #include <limits>
 
+#include "accountstate.h"
 #include "unifiedsearchresult.h"
 
 namespace OCC {
-class AccountState;
 
 /**
  * @brief Account-scoped presentation model for Nextcloud Unified Search.

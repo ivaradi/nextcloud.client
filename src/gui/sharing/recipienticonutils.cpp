@@ -5,6 +5,8 @@
 
 #include "recipienticonutils.h"
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 QString OCC::Gui::Sharing::RecipientIconUtils::svgDataUrl(const QString &svg)

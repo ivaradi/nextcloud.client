@@ -7,6 +7,8 @@
 
 #include "assistantutils.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonArray>
 #include <QJsonObject>
 

@@ -6,6 +6,7 @@
 #include "ocsuserstatusconnector.h"
 #include "account.h"
 #include "userstatusconnector.h"
+#include "common/qtcompat.h"
 
 #include <networkjobs.h>
 

@@ -4,7 +4,7 @@
  */
 
 import QtQuick
-import QtQuick.Effects
+@QML_AVATAR_EFFECT_IMPORT@
 
 Item {
     id: root
@@ -34,12 +34,5 @@ Item {
         layer.enabled: true
     }
 
-    MultiEffect {
-        objectName: "recipientAvatarEffect"
-
-        anchors.fill: parent
-        source: avatarImage
-        maskEnabled: true
-        maskSource: maskShape
-    }
+@QML_AVATAR_EFFECT@
 }

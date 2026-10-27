@@ -5,6 +5,7 @@
 
 #include "addsourcejob.h"
 
+#include "common/qtcompat.h"
 #include "sharingconstants.h"
 
 using namespace Qt::StringLiterals;

@@ -9,6 +9,8 @@
 #include "assistantclient.h"
 #include "assistantutils.h"
 
+#include "common/qtcompat.h"
+
 #include <QDateTime>
 #include <QJsonArray>
 #include <QJsonObject>
