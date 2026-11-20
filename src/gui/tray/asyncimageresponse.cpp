@@ -11,6 +11,8 @@
 #include <QPainter>
 #include <QSvgRenderer>
 
+#include "common/qtcompat.h"
+
 #include "accountmanager.h"
 
 using namespace Qt::StringLiterals;

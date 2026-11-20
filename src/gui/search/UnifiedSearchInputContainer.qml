@@ -7,6 +7,7 @@ import QtQuick
 import QtQuick.Controls.Basic
 import Style
 import com.nextcloud.desktopclient
+import com.nextcloud.desktopclient.search
 import "qrc:/qml/src/gui/tray"
 
 TextField {

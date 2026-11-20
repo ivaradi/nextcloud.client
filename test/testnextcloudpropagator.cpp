@@ -18,6 +18,8 @@
 #include "syncenginetestutils.h"
 #include "networkjobs.h"
 
+#include "common/qtcompat.h"
+
 using namespace Qt::StringLiterals;
 
 #ifdef HAVE_QHTTPSERVER

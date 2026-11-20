@@ -10,6 +10,7 @@
 #include "account.h"
 #include "accountmanager.h"
 #include "application.h"
+#include "common/qtcompat.h"
 #include "configfile.h"
 #include "folderman.h"
 #include "settingspanelstyle.h"

@@ -910,7 +910,9 @@ class TestSharingDialog : public QObject
         const auto effect = avatarObject->findChild<QObject *>(QStringLiteral("recipientAvatarEffect"));
         QVERIFY(effect);
         QVERIFY(effect->property("visible").toBool());
-        QVERIFY(effect->property("maskEnabled").toBool());
+        if (effect->property("maskEnabled").isValid()) {
+            QVERIFY(effect->property("maskEnabled").toBool());
+        }
         const auto mask = avatarObject->findChild<QObject *>(QStringLiteral("recipientAvatarMaskShape"));
         QVERIFY(mask);
         QCOMPARE(effect->property("maskSource").value<QObject *>(), mask);

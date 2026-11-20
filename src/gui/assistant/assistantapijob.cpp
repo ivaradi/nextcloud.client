@@ -5,6 +5,8 @@
 
 #include "assistantapijob.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonDocument>
 #include <QLoggingCategory>
 #include <QNetworkReply>

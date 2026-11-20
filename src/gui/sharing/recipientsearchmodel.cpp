@@ -5,6 +5,8 @@
 
 #include "recipientsearchmodel.h"
 
+#include "common/qtcompat.h"
+
 #include <QJsonObject>
 #include <QLoggingCategory>
 

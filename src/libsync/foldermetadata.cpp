@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include "common/qtcompat.h"
 #include "foldermetadata.h"
 #include "account.h"
 #include "clientsideencryption.h"
